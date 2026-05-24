@@ -5,7 +5,7 @@ function getUrlBase() {
 
 const token = localStorage.getItem('token');
 if (!token) {
-    window.location.href = '/html/index.html';
+    window.location.href = '/html/login.html';
 }
 
 const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
@@ -49,7 +49,7 @@ async function carregarDadosCompletos() {
         } else if (resposta.status === 403) {
             console.warn("Sem permissão ou token expirado.");
             localStorage.clear();
-            window.location.href = '/html/index.html';
+            window.location.href = '/html/login.html';
         } else {
             console.error("Erro na busca:", json.mensagem);
         }
@@ -90,7 +90,7 @@ async function fazerLogout() {
 
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
-    window.location.href = '/html/index.html';
+    window.location.href = '/html/login.html';
 }
 
 carregarDadosCompletos();

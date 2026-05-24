@@ -18,5 +18,5 @@ const urlSalva = localStorage.getItem('api_url');
 
         localStorage.setItem('api_url', urlDigitada);
             
-        window.location.href = '/html/index.html'; 
+        window.location.href = '/html/login.html'; 
     });

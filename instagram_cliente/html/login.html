@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagrão - Acesso</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/login.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Instagrão</h1>
+
+    <div id="login-section">
+        <form id="form-login">
+            <input type="text" id="login-usuario" placeholder="Nome de usuário" required>
+            <input type="password" id="login-senha" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <div class="toggle-text">
+            Não tem uma conta? <a onclick="toggleForms()">Cadastre-se</a>
+        </div>
+    </div>
+
+    <div id="register-section" class="hidden">
+        <form id="form-register">
+            <input type="text" id="reg-nome" placeholder="Nome Completo" required>
+            <input type="email" id="reg-email" placeholder="E-mail" required>
+            <input type="text" id="reg-usuario" placeholder="Nome de usuário" required>
+            <input type="password" id="reg-senha" placeholder="Senha (Mín. 8 caracteres)" required>
+            <input type="text" id="reg-bio" placeholder="Biografia (Opcional)">
+            <button type="submit">Cadastre-se</button>
+        </form>
+        <div class="toggle-text">
+            Tem uma conta? <a onclick="toggleForms()">Conecte-se</a>
+        </div>
+    </div>
+
+    <div id="mensagem"></div>
+
+    <div class="toggle-text" style="margin-top: 20px; border-top: 1px solid #dbdbdb; padding-top: 15px;">
+        Servidor incorreto? <a style="cursor: pointer;" onclick="voltarParaConectar()">Trocar Servidor</a>
+    </div>
+</div>
+
+</body>
+</html>

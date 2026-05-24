@@ -4,7 +4,7 @@ function getUrlBase() {
 }
 
 const token = localStorage.getItem('token');
-if (!token) window.location.href = '/html/index.html';
+if (!token) window.location.href = '/html/login.html';
 
 const usuarioBasico = JSON.parse(localStorage.getItem('usuario'));
 
@@ -35,7 +35,7 @@ async function carregarDadosCompletos() {
         if (resposta.status === 403) {
             console.warn("Sessão expirada ou usuário alterado. Refazendo login.");
             localStorage.clear();
-            window.location.href = '/html/index.html';
+            window.location.href = '/html/login.html';
             return;
         }
 
@@ -98,5 +98,5 @@ async function fazerLogout() {
 
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
-    window.location.href = '/html/index.html';
+    window.location.href = '/html/login.html';
 }

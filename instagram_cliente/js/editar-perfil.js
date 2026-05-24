@@ -4,7 +4,7 @@ function getUrlBase() {
 }
 
 const token = localStorage.getItem('token');
-if (!token) window.location.href = '/html/index.html';
+if (!token) window.location.href = '/html/login.html';
 
 let usuario = JSON.parse(localStorage.getItem('usuario'));
 
@@ -64,7 +64,7 @@ document.getElementById('form-perfil').addEventListener('submit', async (e) => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('refreshToken');
                     localStorage.removeItem('usuario');
-                    window.location.href = '/html/index.html';
+                    window.location.href = '/html/login.html';
                 }, 2500);
                 return;
             }
@@ -113,7 +113,7 @@ async function deletarConta() {
             localStorage.removeItem('token');
             localStorage.removeItem('usuario');
 
-            window.location.href = '/html/index.html';
+            window.location.href = '/html/login.html';
         } else {
             mostrarMensagem(json.mensagem || 'Erro ao deletar conta.', 'erro');
         }
@@ -161,5 +161,5 @@ async function fazerLogout() {
 
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
-    window.location.href = '/html/index.html';
+    window.location.href = '/html/login.html';
 }

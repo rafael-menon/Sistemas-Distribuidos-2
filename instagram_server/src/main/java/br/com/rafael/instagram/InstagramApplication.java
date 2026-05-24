@@ -9,13 +9,18 @@ import java.util.Scanner;
 public class InstagramApplication {
     public static void main(String[] args) {
         if (System.getProperty("server.port") == null) {
-            Scanner scanner = new Scanner(System.in);
+            String porta = "20000"; 
+            
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Qual o servidor deve utilizar? (Pressione Enter para usar 20000): ");
+                String userInput = scanner.nextLine();
 
-            System.out.print("Qual o servidor deve utilizar? (Pressione Enter para usar 20000): ");
-            String porta = scanner.nextLine();
-
-            if (porta == null || porta.trim().isEmpty()) {
-                porta = "20000";
+                if (userInput != null && !userInput.trim().isEmpty()) {
+                    porta = userInput;
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao ler a entrada. Assumindo porta padrão: 20000.");
             }
 
             System.setProperty("server.port", porta);

@@ -72,7 +72,6 @@ public class UserDto {
             String id,
             String nome,
             String email,
-            String biografia,
             String usuario
     ) {}
 

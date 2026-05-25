@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -27,8 +28,10 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<UserDto.UserSummary>>> list() {
-        List<UserDto.UserSummary> dados = userService.listar();
+    public ResponseEntity<ApiResponse<Map<String, List<UserDto.UserSummary>>>> list() {
+        List<UserDto.UserSummary> usuarios = userService.listar();
+
+        Map<String, List<UserDto.UserSummary>> dados = Map.of("usuarios", usuarios);
 
         return ResponseEntity.ok(
                 ApiResponse.sucesso("LISTAGEM_SUCESSO", "Usuários listados com sucesso", dados)

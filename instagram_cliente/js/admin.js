@@ -32,53 +32,55 @@ const API_URL = localStorage.getItem('api_url');
             console.log(JSON.stringify(json, null, 2));
             
             if (resposta.status === 200) {
-                //console.log(json);
-                const listaUsuarios = json.dados;
+                console.log(json);
+                const listaUsuarios = json.dados.usuarios;
                 desenharTabela(listaUsuarios);
             } else {
                 mostrarMensagem('Erro ao carregar lista.', 'erro');
             }
         } catch (error) {
+            console.log(error);
             mostrarMensagem('Erro de conexão.', 'erro');
         }
     }
 
-    function desenharTabela(usuarios) {
-        const corpo = document.getElementById('corpo-tabela');
-        corpo.innerHTML = ''; 
+   function desenharTabela(dadosUsuarios) {
+    const corpo = document.getElementById('corpo-tabela');
+    corpo.innerHTML = ''; 
 
-        if (!usuarios || usuarios.length === 0) {
-            corpo.innerHTML = '<tr><td colspan="5" style="text-align: center;">Nenhum usuário encontrado.</td></tr>';
-            return;
-        }
+    const usuarios = dadosUsuarios ? Object.values(dadosUsuarios) : [];
 
-        usuarios.forEach(u => {
-            const isMimMesmo = u.usuario === 'admin';
-            
-            const botoes = isMimMesmo 
-                ? `<i>Administrador</i>` 
-                : `<button class="btn-pequeno btn-edit" onclick="abrirEdicao('${u.id}', '${u.nome}', '${u.usuario}', '${u.email}', '${u.biografia}')">Editar</button>
-                   <button class="btn-pequeno btn-del" onclick="deletarUsuario('${u.id}', '${u.usuario}')">Deletar</button>`;
+    if (usuarios.length === 0) {
+        corpo.innerHTML = '<tr><td colspan="5" style="text-align: center;">Nenhum usuário encontrado.</td></tr>';
+        return;
+    }   
 
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${u.id}</td>
-                <td>${u.nome}</td>
-                <td>@${u.usuario}</td>
-                <td>${u.email}</td>
-                <td>${botoes}</td>
-            `;
-            corpo.appendChild(tr);
-        });
+    for (const u of usuarios) {
+        const isMimMesmo = u.usuario === 'admin';
+        
+        const botoes = isMimMesmo 
+            ? `<i>Administrador</i>` 
+            : `<button class="btn-pequeno btn-edit" onclick="abrirEdicao('${u.id}', '${u.nome}', '${u.usuario}', '${u.email}')">Editar</button>
+               <button class="btn-pequeno btn-del" onclick="deletarUsuario('${u.id}', '${u.usuario}')">Deletar</button>`;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${u.id}</td>
+            <td>${u.nome}</td>
+            <td>@${u.usuario}</td>
+            <td>${u.email}</td>
+            <td>${botoes}</td>
+        `;
+        corpo.appendChild(tr);
     }
+}
 
-    function abrirEdicao(id, nome, usuario, email, biografia) {
+    function abrirEdicao(id, nome, usuario, email) {
         idEditando = id;
         document.getElementById('id-alvo').innerText = id;
         document.getElementById('edit-nome').value = nome;
         document.getElementById('edit-usuario').value = usuario;
         document.getElementById('edit-email').value = email;
-        document.getElementById('edit-biografia').value = biografia;
         
         document.getElementById('modal-edicao').style.display = 'block';
         window.scrollTo(0, document.body.scrollHeight); 
@@ -93,8 +95,7 @@ const API_URL = localStorage.getItem('api_url');
         const dadosAtualizados = {
             nome: document.getElementById('edit-nome').value,
             usuario: document.getElementById('edit-usuario').value,
-            email: document.getElementById('edit-email').value,
-            biografia: document.getElementById('edit-biografia').value
+            email: document.getElementById('edit-email').value
         };
 
         try {

@@ -1,22 +1,32 @@
-const urlSalva = localStorage.getItem('api_url');
-    if (urlSalva) {
-        document.getElementById('input-url').value = urlSalva;
-    }
+localStorage.clear();
 
-    document.getElementById('form-conectar').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-            
-        let urlDigitada = document.getElementById('input-url').value.trim().replace(/\/$/, "");
+const urlSalva = localStorage.getItem("api_url");
+if (urlSalva) {
+    document.getElementById("input-url").value = urlSalva;
+}
 
-        if (urlDigitada.endsWith('/')) {
+document
+    .getElementById("form-conectar")
+    .addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let urlDigitada = document
+            .getElementById("input-url")
+            .value.trim()
+            .replace(/\/$/, "");
+
+        if (urlDigitada.endsWith("/")) {
             urlDigitada = urlDigitada.slice(0, -1);
         }
 
-        if (!urlDigitada.startsWith('http://') && !urlDigitada.startsWith('https://')) {
-            urlDigitada = 'http://' + urlDigitada;
+        if (
+            !urlDigitada.startsWith("http://") &&
+            !urlDigitada.startsWith("https://")
+        ) {
+            urlDigitada = "http://" + urlDigitada;
         }
 
-        localStorage.setItem('api_url', urlDigitada);
-            
-        window.location.href = '/html/login.html'; 
+        localStorage.setItem("api_url", urlDigitada);
+
+        window.location.href = "/html/login.html";
     });

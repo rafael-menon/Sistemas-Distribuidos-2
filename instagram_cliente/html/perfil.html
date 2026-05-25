@@ -1,52 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagrão - Meu Perfil</title>
-    <link rel="stylesheet" href="/css//perfil.css">
-    <script src="/js/perfil.js" defer></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Instagrão - Meu Perfil</title>
+        <link rel="stylesheet" href="/css/perfil.css" />
+        <link rel="icon" type="image/png" href="/assets/logo.png">
+        <script src="/js/shared/api.js" defer></script>
+        <script src="/js/shared/util.js" defer></script>
+        <script src="/js/shared/user.js" defer></script>
+        <script src="/js/shared/auth.js" defer></script>
+        <script src="/js/perfil.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <a href="/html/feed.html" class="logo">Instagrão</a>
+            <div class="menu-items">
+                <a href="/html/feed.html">Feed</a>
+                <a
+                    href="/html/admin.html"
+                    id="link-admin"
+                    style="display: none; color: #0095f6"
+                    >Painel Admin</a
+                >
+                <a href="#" class="btn-sair" onclick="logout()">Sair</a>
+            </div>
+        </nav>
 
-<nav>
-    <a href="/html/feed.html" class="logo">Instagrão</a>
-    <div class="menu-items">
-        <a href="/html/feed.html">Feed</a>
-        <a href="/html/admin.html" id="link-admin" style="display: none; color: #0095f6;">Painel Admin</a>
-        <a href="#" class="btn-sair" onclick="fazerLogout()">Sair</a>
-    </div>
-</nav>
+        <main>
+            <div class="profile-header">
+                <img
+                    id="view-foto"
+                    src=""
+                    alt="Foto de perfil"
+                    class="profile-picture"
+                />
 
-<main>
-    <div class="profile-header">
-        <img id="view-foto" src="https://via.placeholder.com/150?text=Sem+Foto" alt="Foto de perfil" class="profile-picture">
+                <div class="profile-info">
+                    <div class="profile-title">
+                        <h2 id="view-usuario" class="username">
+                            carregando...
+                        </h2>
+                        <a href="/html/editar-perfil.html" class="btn-edit"
+                            >Editar perfil</a
+                        >
+                    </div>
 
-        <div class="profile-info">
-            <div class="profile-title">
-                <h2 id="view-usuario" class="username">carregando...</h2>
-                <a href="/html/editar-perfil.html" class="btn-edit">Editar perfil</a>
+                    <div class="profile-stats">
+                        <span><strong>0</strong> publicações</span>
+                        <span><strong>0</strong> seguidores</span>
+                        <span><strong>0</strong> seguindo</span>
+                    </div>
+
+                    <div class="profile-bio">
+                        <h1 id="view-nome">Carregando...</h1>
+                        <p id="view-bio">
+                            Adicione uma biografia editando seu perfil.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div class="profile-stats">
-                <span><strong>0</strong> publicações</span>
-                <span><strong>0</strong> seguidores</span>
-                <span><strong>0</strong> seguindo</span>
+            <div class="posts-grid">
+                <div class="post-item">Nenhuma foto ainda</div>
+                <div class="post-item">Nenhuma foto ainda</div>
+                <div class="post-item">Nenhuma foto ainda</div>
             </div>
-
-            <div class="profile-bio">
-                <h1 id="view-nome">Carregando...</h1>
-                <p id="view-bio">Adicione uma biografia editando seu perfil.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="posts-grid">
-        <div class="post-item">Nenhuma foto ainda</div>
-        <div class="post-item">Nenhuma foto ainda</div>
-        <div class="post-item">Nenhuma foto ainda</div>
-    </div>
-</main>
-
-</body>
+        </main>
+    </body>
 </html>

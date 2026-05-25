@@ -40,6 +40,7 @@ public class AuthService {
         UserDto.LoginUserSummary dadosUsuario = new UserDto.LoginUserSummary(
                 usuario.getId().toString(),
                 usuario.getNome(),
+                usuario.getUsuario(),
                 usuario.getEmail()
         );
 

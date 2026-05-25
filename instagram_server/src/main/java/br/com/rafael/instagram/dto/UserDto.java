@@ -20,6 +20,7 @@ public class UserDto {
     public record LoginUserSummary(
             String id,
             String nome,
+            String usuario,
             String email
     ) {}
 

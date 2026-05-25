@@ -12,12 +12,12 @@ import java.time.ZoneOffset;
 
 @Service
 public class JwtService {
-    private static final String SECRET_KEY = "minha_chave_secreta_muito_segura";
+    private static final String SECRET_KEY = "ninguem_vai_adivinhar";
 
     public String gerarToken(Usuario usuario) {
         Algorithm algoritmo = Algorithm.HMAC256(SECRET_KEY);
         return JWT.create()
-                .withIssuer("instagram-api")
+                .withIssuer("rafael-api")
                 .withSubject(usuario.getUsuario())
                 .withIssuedAt(Instant.now())
                 .withExpiresAt(gerarDataExpiracao())
@@ -29,7 +29,7 @@ public class JwtService {
             Algorithm algoritmo = Algorithm.HMAC256(SECRET_KEY);
 
             return JWT.require(algoritmo)
-                    .withIssuer("instagram-api")
+                    .withIssuer("rafael-api")
                     .build()
                     .verify(token)
                     .getSubject();

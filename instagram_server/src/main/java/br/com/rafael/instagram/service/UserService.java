@@ -68,7 +68,6 @@ public class UserService {
                         u.getId().toString(),
                         u.getNome(),
                         u.getEmail(),
-                        u.getBiografia(),
                         u.getUsuario()
                 ))
                 .collect(Collectors.toList());
